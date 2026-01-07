@@ -1,0 +1,100 @@
+#  RED AI
+### Code-Based Agent Using LangGraph & FastAPI
+
+---
+
+## 📌 Project Overview
+
+This project implements a code based AI agent capable of understanding high-level user goals, breaking them into actionable steps, making decisions, using external tools, and completing tasks end-to-end with minimal human intervention.
+
+Unlike traditional chatbots, this system demonstrates **true agentic behavior** by combining reasoning, planning, memory, and tool usage within a single autonomous workflow.
+
+This project is built for DECATHON 2026.
+---
+
+## 🎯 Key Capabilities
+
+- Natural language goal understanding  
+- Autonomous task decomposition and planning  
+- Decision-making without step-by-step user instructions  
+- Code-based tool usage (Email & Calendar)  
+- Stateful memory for context retention  
+- End-to-end task completion  
+- Unified agent handling both chat and actions  
+
+---
+
+## 🧠 System Architecture Summary
+
+- **Frontend** provides a simple chat-based interface for user interaction  
+- **Backend (FastAPI)** hosts the agent runtime and exposes REST APIs  
+- **LangGraph** acts as the agent brain, handling reasoning, planning, execution, and memory  
+- **Tool APIs** enable real-world actions such as sending emails and creating calendar events  
+
+LangGraph is embedded directly inside the backend and serves as the **central agent orchestrator**, ensuring full autonomy and code-level control.
+
+---
+
+## 🧰 Technology Stack
+
+### Frontend
+- HTML  
+- CSS  
+- JavaScript  
+
+### Backend
+- Python  
+- FastAPI  
+
+### Agentic AI Framework
+- **LangGraph** (code-based agent orchestration)
+  - Intent understanding  
+  - Task planning & classification  
+  - Decision making  
+  - Tool invocation  
+  - Result evaluation  
+  - Memory management  
+
+### AI / LLM Layer
+- Large Language Model (LLM) accessed programmatically via LangGraph  
+
+### Tool Integrations
+- Email Service API (SMTP / Gmail API)  
+- Google Calendar API  
+
+### Memory & State
+- In-memory or database-backed state  
+- Optional vector store for contextual memory  
+
+---
+
+## 🔁 Agent Workflow (High-Level)
+
+1. User submits a message or goal through the chat interface  
+2. FastAPI forwards the request to the LangGraph agent  
+3. The agent:
+   - Understands the intent  
+   - Breaks the goal into steps  
+   - Decides whether a tool is required  
+   - Executes actions autonomously  
+   - Evaluates results  
+   - Updates memory  
+4. Final response or confirmation is returned to the user  
+
+The same agent handles both **normal conversational responses** and **autonomous task execution**.
+
+---
+
+## ✨ Example Agent Actions
+
+- Sending emails based on user intent  
+- Creating calendar events from natural language requests  
+- Responding conversationally when no action is required  
+
+---
+
+---
+
+## 🏁 Conclusion
+
+This project demonstrates a practical and scalable approach to building **autonomous agentic AI systems** using modern, code-first frameworks. By embedding LangGraph directly within a FastAPI backend, the system achieves high autonomy, clarity of reasoning, and full compliance with the hackathon requirements.
