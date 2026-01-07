@@ -121,13 +121,6 @@ The same agent handles both **normal conversational responses** and **autonomous
 - Responding conversationally when no action is required  
 
 ---
-🧪 Current Implementation(Checkpoint 1)
-
-⦁	Problem and domain finalized
-⦁	Architecture design
-⦁	Backend boilerplate implemented
-
----
 👥 Team Members
 
 1.Sanket Srivastava
