@@ -1,7 +1,36 @@
-#  RED AI
-### Code-Based Agent Using LangGraph & FastAPI
+#  RED AI - An Autonomous AI Agent
 
 ---
+## 🔁 Current Workflow (Checkpoint 1)
+
+User sends a message via an API request
+
+FastAPI backend receives the request
+
+OpenAI Chat Model processes the input
+
+A conversational response is returned to the user
+
+At this stage, the system behaves as a chatbot and does not yet perform autonomous actions or planning.
+
+## 🧪 Checkpoint 1 – Current Implementation Status
+
+✔ *Integrated OpenAI Chat Model* into the FastAPI backend
+✔ System currently functions as a chat-based AI
+✔ API endpoints tested locally using Postman
+✔ Verified request–response flow and model integration
+
+## 🔜 Next Objectives
+
+Implement agentic logic using LangGraph
+
+Add goal decomposition, planning, and decision-making
+
+Integrate the agent with the frontend chat interface
+
+Enhance system robustness and scalability
+
+Prepare the application for deployment
 
 ## 📌 Project Overview
 
