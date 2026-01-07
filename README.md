@@ -2,6 +2,38 @@
 ### Code-Based Agent Using LangGraph & FastAPI
 
 ---
+## 🔁 Current Workflow (Checkpoint 1 & Session 3)
+
+Added a frontend folder that contains index.html, style.css and script.js(A basic UI for testing the working demo of frontend and backend integration locally)
+
+User sends a message via an API request
+
+FastAPI backend receives the request
+
+OpenAI Chat Model processes the input
+
+A conversational response is returned to the user
+
+At this stage, the system behaves as a chatbot and does not yet perform autonomous actions or planning.
+
+## 🧪 Checkpoint 1 – Implementation Status
+
+✔ *Integrated OpenAI Chat Model* into the FastAPI backend
+✔ System currently functions as a chat-based AI
+✔ API endpoints tested locally using Postman
+✔ Verified request–response flow and model integration
+
+## 🔜 Next Objectives
+
+Implement agentic logic using LangGraph
+
+Add goal decomposition, planning, and decision-making
+
+Integrate the agent with the frontend chat interface
+
+Enhance system robustness and scalability
+
+Prepare the application for deployment
 
 ## 📌 Project Overview
 
@@ -9,7 +41,7 @@ This project implements a code based AI agent capable of understanding high-leve
 
 Unlike traditional chatbots, this system demonstrates **true agentic behavior** by combining reasoning, planning, memory, and tool usage within a single autonomous workflow.
 
-This project is built for DECATHON 2026.
+This project is built for DECTHON 2026.
 ---
 
 ## 🎯 Key Capabilities
