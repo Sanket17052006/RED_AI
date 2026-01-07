@@ -9,7 +9,7 @@ This project implements a code based AI agent capable of understanding high-leve
 
 Unlike traditional chatbots, this system demonstrates **true agentic behavior** by combining reasoning, planning, memory, and tool usage within a single autonomous workflow.
 
-This project is built for DECATHON 2026.
+This project is built for DECTHON 2026.
 ---
 
 ## 🎯 Key Capabilities
@@ -98,3 +98,4 @@ The same agent handles both **normal conversational responses** and **autonomous
 ## 🏁 Conclusion
 
 This project demonstrates a practical and scalable approach to building **autonomous agentic AI systems** using modern, code-first frameworks. By embedding LangGraph directly within a FastAPI backend, the system achieves high autonomy, clarity of reasoning, and full compliance with the hackathon requirements.
+
