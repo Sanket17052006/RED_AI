@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RED AI - Agentic AI Builder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🤖</span>
+                <h1>RED AI</h1>
+                <span class="logo-subtitle">Agentic AI Builder</span>
+            </div>
+            <div class="header-stats">
+                <div class="stat-card mini">
+                    <span class="stat-label">Agents</span>
+                    <span class="stat-value" id="totalAgents">0</span>
+                </div>
+                <div class="stat-card mini">
+                    <span class="stat-label">Tools</span>
+                    <span class="stat-value" id="totalTools">0</span>
+                </div>
+                <div class="stat-card mini">
+                    <span class="stat-label">Status</span>
+                    <span class="stat-value status-indicator" id="serverStatus">●</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="nav-menu">
+                <button class="nav-item active" data-section="agents">
+                    <span>👥</span> Agents
+                </button>
+                <button class="nav-item" data-section="create">
+                    <span>➕</span> Create Agent
+                </button>
+                <button class="nav-item" data-section="evolve">
+                    <span>🧬</span> Evolve Agents
+                </button>
+                <button class="nav-item" data-section="chat">
+                    <span>💬</span> Chat
+                </button>
+                <button class="nav-item" data-section="tools">
+                    <span>🛠️</span> Tools
+                </button>
+                <button class="nav-item" data-section="stats">
+                    <span>📊</span> Statistics
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Agents Section -->
+            <section class="content-section active" id="section-agents">
+                <div class="section-header">
+                    <h2>Available AI Agents</h2>
+                    <button class="btn btn-primary" onclick="loadAgents()">
+                        <span>🔄</span> Refresh
+                    </button>
+                </div>
+                <div class="agents-grid" id="agentsGrid">
+                    <div class="loading">Loading agents...</div>
+                </div>
+            </section>
+
+            <!-- Create Agent Section -->
+            <section class="content-section" id="section-create">
+                <div class="section-header">
+                    <h2>Create New Agent</h2>
+                </div>
+                <div class="form-container">
+                    <form id="createAgentForm" class="agent-form">
+                        <div class="form-group">
+                            <label for="agentName">Agent Name</label>
+                            <input type="text" id="agentName" required placeholder="e.g., Math Expert, Coding Assistant">
+                        </div>
+                        <div class="form-group">
+                            <label for="systemPrompt">System Prompt</label>
+                            <textarea id="systemPrompt" rows="5" required 
+                                placeholder="Define the agent's behavior, expertise, and instructions..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="temperature">
+                                Temperature: <span id="tempValue">0.7</span>
+                            </label>
+                            <input type="range" id="temperature" min="0" max="2" step="0.1" value="0.7">
+                            <div class="range-labels">
+                                <span>Focused (0.0)</span>
+                                <span>Balanced (1.0)</span>
+                                <span>Creative (2.0)</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <span>✨</span> Create Agent
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Evolve Agents Section -->
+            <section class="content-section" id="section-evolve">
+                <div class="section-header">
+                    <h2>Evolve Agents with Genetic Algorithm</h2>
+                </div>
+                <div class="form-container">
+                    <form id="evolveForm" class="agent-form">
+                        <div class="form-group">
+                            <label>Select Base Agents (min 1)</label>
+                            <div id="agentCheckboxes" class="checkbox-group"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="testTasks">Test Tasks (one per line)</label>
+                            <textarea id="testTasks" rows="5" required 
+                                placeholder="Task 1&#10;Task 2&#10;Task 3"></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="generations">Generations</label>
+                                <input type="number" id="generations" min="1" max="50" value="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="populationSize">Population Size</label>
+                                <input type="number" id="populationSize" min="2" max="50" value="10">
+                            </div>
+                            <div class="form-group">
+                                <label for="mutationRate">Mutation Rate</label>
+                                <input type="number" id="mutationRate" min="0" max="1" step="0.1" value="0.1">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <span>🧬</span> Start Evolution
+                        </button>
+                    </form>
+                    <div id="evolutionProgress" class="evolution-progress" style="display: none;">
+                        <h3>Evolution Progress</h3>
+                        <div id="evolutionStatus"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chat Section -->
+            <section class="content-section" id="section-chat">
+                <div class="section-header">
+                    <h2>Chat Interface</h2>
+                    <button class="btn btn-secondary" onclick="clearChat()">
+                        <span>🗑️</span> Clear
+                    </button>
+                </div>
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages"></div>
+                    <div class="chat-input-container">
+                        <textarea id="chatInput" placeholder="Type your message..." rows="3"></textarea>
+                        <button class="btn btn-primary" onclick="sendChatMessage()">
+                            <span>📤</span> Send
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tools Section -->
+            <section class="content-section" id="section-tools">
+                <div class="section-header">
+                    <h2>Available Tools</h2>
+                    <button class="btn btn-primary" onclick="loadTools()">
+                        <span>🔄</span> Refresh
+                    </button>
+                </div>
+                <div class="tools-grid" id="toolsGrid">
+                    <div class="loading">Loading tools...</div>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="content-section" id="section-stats">
+                <div class="section-header">
+                    <h2>System Statistics</h2>
+                    <button class="btn btn-primary" onclick="loadStats()">
+                        <span>🔄</span> Refresh
+                    </button>
+                </div>
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <span class="stat-label">Total Agents</span>
+                        <span class="stat-value" id="statTotalAgents">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Memory Entries</span>
+                        <span class="stat-value" id="statMemory">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Total Executions</span>
+                        <span class="stat-value" id="statExecutions">0</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Agent Detail Modal -->
+    <div id="agentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeAgentModal()">&times;</span>
+            <h2 id="modalAgentName">Agent Details</h2>
+            <div id="modalAgentContent"></div>
+            <div class="modal-actions">
+                <button class="btn btn-danger" onclick="deleteCurrentAgent()">
+                    <span>🗑️</span> Delete Agent
+                </button>
+                <button class="btn btn-secondary" onclick="closeAgentModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Execution Modal -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeTaskModal()">&times;</span>
+            <h2>Execute Task</h2>
+            <form id="executeTaskForm">
+                <div class="form-group">
+                    <label>Agent ID</label>
+                    <input type="text" id="executeAgentId" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="executeTask">Task</label>
+                    <textarea id="executeTask" rows="4" required placeholder="Enter the task for the agent..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="executeContext">Context (Optional)</label>
+                    <textarea id="executeContext" rows="3" placeholder="Additional context..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-large">
+                    <span>🚀</span> Execute Task
+                </button>
+            </form>
+            <div id="taskResult" class="task-result"></div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
