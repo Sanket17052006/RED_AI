@@ -415,18 +415,60 @@ async function executeTask() {
                 <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
                     <strong>Timestamp:</strong> ${new Date(result.timestamp).toLocaleString()}
                 </div>
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                    <button class="btn btn-secondary" onclick="closeTaskModal()" style="margin-right: 0.5rem;">
+                        <span>✅</span> Close & Save Results
+                    </button>
+                    <button class="btn btn-info" onclick="copyTaskResult()" style="margin-right: 0.5rem;">
+                        <span>📋</span> Copy Result
+                    </button>
+                    <button class="btn btn-warning" onclick="clearTaskResult()">
+                        <span>🗑️</span> Clear
+                    </button>
+                </div>
             </div>
         `;
 
+        // Store result for copying
+        window.currentTaskResult = result;
+        
         // Refresh agents to update stats
         await loadAgents();
+        
+        // IMPORTANT: Don't close the modal automatically - let user decide
+        showToast('Task completed! Review the results below.', result.success ? 'success' : 'error');
+        
     } catch (error) {
         resultDiv.innerHTML = `
             <div style="padding: 1rem; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border-left: 3px solid var(--danger);">
                 <strong>Error:</strong> ${escapeHtml(error.message)}
+                <div style="margin-top: 1rem;">
+                    <button class="btn btn-secondary" onclick="closeTaskModal()">
+                        <span>❌</span> Close
+                    </button>
+                </div>
             </div>
         `;
+        showToast('Task execution failed: ' + error.message, 'error');
     }
+}
+
+// Helper functions for task result handling
+function copyTaskResult() {
+    if (window.currentTaskResult) {
+        const resultText = JSON.stringify(window.currentTaskResult, null, 2);
+        navigator.clipboard.writeText(resultText).then(() => {
+            showToast('Task result copied to clipboard!', 'success');
+        }).catch(() => {
+            showToast('Failed to copy to clipboard', 'error');
+        });
+    }
+}
+
+function clearTaskResult() {
+    document.getElementById('taskResult').innerHTML = '';
+    window.currentTaskResult = null;
+    showToast('Task result cleared', 'info');
 }
 
 async function loadTools() {

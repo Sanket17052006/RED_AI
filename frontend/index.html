@@ -167,6 +167,172 @@
                 </div>
             </section>
 
+            <!-- True Agentic AI Section -->
+            <section class="content-section" id="section-true-agentic">
+                <div class="section-header">
+                    <h2>True Agentic AI System</h2>
+                    <button class="btn btn-primary" onclick="loadTrueAgents()">
+                        <span>🔄</span> Refresh
+                    </button>
+                </div>
+                
+                <!-- Autonomous Controls -->
+                <div class="agentic-controls">
+                    <h3>🤖 Autonomous Controls</h3>
+                    <div class="control-group">
+                        <div class="form-group">
+                            <label for="trueAgentId">Select Agent</label>
+                            <select id="trueAgentId">
+                                <option value="">Choose an agent...</option>
+                            </select>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn btn-success" onclick="startAutonomousMode()">
+                                <span>▶️</span> Start Autonomous
+                            </button>
+                            <button class="btn btn-danger" onclick="stopAutonomousMode()">
+                                <span>⏹️</span> Stop Autonomous
+                            </button>
+                            <button class="btn btn-info" onclick="getTrueAgentStatus()">
+                                <span>📊</span> Get Status
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Goal-Directed Tasks -->
+                <div class="agentic-controls">
+                    <h3>🎯 Goal-Directed Tasks</h3>
+                    <div class="control-group">
+                        <form id="goalDirectedForm">
+                            <div class="form-group">
+                                <label for="goalDescription">Goal Description</label>
+                                <textarea id="goalDescription" rows="3" required 
+                                    placeholder="e.g., Optimize system performance, Learn new skill, Achieve specific outcome"></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="goalType">Goal Type</label>
+                                    <select id="goalType">
+                                        <option value="achievement">Achievement</option>
+                                        <option value="maintenance">Maintenance</option>
+                                        <option value="optimization">Optimization</option>
+                                        <option value="learning">Learning</option>
+                                        <option value="exploration">Exploration</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="goalPriority">Priority</label>
+                                    <select id="goalPriority">
+                                        <option value="critical">Critical</option>
+                                        <option value="high">High</option>
+                                        <option value="medium" selected>Medium</option>
+                                        <option value="low">Low</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <span>🎯</span> Execute Goal
+                            </button>
+                        </form>
+                        <div id="goalResult" class="result-container"></div>
+                    </div>
+                </div>
+
+                <!-- Environment Perception -->
+                <div class="agentic-controls">
+                    <h3>👁️ Environment Perception</h3>
+                    <div class="control-group">
+                        <div class="form-group">
+                            <label>Focus Areas</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" value="system" checked> System</label>
+                                <label><input type="checkbox" value="network"> Network</label>
+                                <label><input type="checkbox" value="database"> Database</label>
+                                <label><input type="checkbox" value="external_api"> External APIs</label>
+                                <label><input type="checkbox" value="filesystem"> Filesystem</label>
+                                <label><input type="checkbox" value="user_interaction"> User Activity</label>
+                            </div>
+                        </div>
+                        <button class="btn btn-info" onclick="perceiveEnvironment()">
+                            <span>👁️</span> Perceive Environment
+                        </button>
+                        <div id="perceptionResult" class="result-container"></div>
+                    </div>
+                </div>
+
+                <!-- Advanced Planning -->
+                <div class="agentic-controls">
+                    <h3>🧠 Advanced Planning</h3>
+                    <div class="control-group">
+                        <form id="planningForm">
+                            <div class="form-group">
+                                <label for="planningTask">Task to Plan</label>
+                                <textarea id="planningTask" rows="3" required 
+                                    placeholder="Describe the complex task you want the agent to plan and execute"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="planningStrategy">Planning Strategy</label>
+                                <select id="planningStrategy">
+                                    <option value="hybrid" selected>Hybrid</option>
+                                    <option value="forward_chaining"> Forward Chaining</option>
+                                    <option value="backward_chaining"> Backward Chaining</option>
+                                    <option value="hierarchical"> Hierarchical</option>
+                                    <option value="reactive"> Reactive</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <span>🧠</span> Plan & Execute
+                            </button>
+                        </form>
+                        <div id="planningResult" class="result-container"></div>
+                    </div>
+                </div>
+
+                <!-- Learning & Adaptation -->
+                <div class="agentic-controls">
+                    <h3>🎓 Learning & Adaptation</h3>
+                    <div class="control-group">
+                        <form id="learningForm">
+                            <div class="form-group">
+                                <label for="learningContext">Context</label>
+                                <textarea id="learningContext" rows="2" 
+                                    placeholder="Describe the situation or context"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="learningAction">Action Taken</label>
+                                <input type="text" id="learningAction" 
+                                    placeholder="What action was performed?">
+                            </div>
+                            <div class="form-group">
+                                <label for="learningOutcome">Outcome</label>
+                                <textarea id="learningOutcome" rows="2" 
+                                    placeholder="What was the result?"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="learningReward">Reward (-1 to 1)</label>
+                                <input type="number" id="learningReward" min="-1" max="1" step="0.1" value="0">
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <span>🎓</span> Learn from Feedback
+                            </button>
+                        </form>
+                        <div id="learningResult" class="result-container"></div>
+                    </div>
+                </div>
+
+                <!-- System Status -->
+                <div class="agentic-controls">
+                    <h3>📈 System Status</h3>
+                    <div class="control-group">
+                        <button class="btn btn-info" onclick="getSystemStatus()">
+                            <span>📊</span> Get Full System Status
+                        </button>
+                        <div id="systemStatusResult" class="result-container"></div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Tools Section -->
             <section class="content-section" id="section-tools">
                 <div class="section-header">
