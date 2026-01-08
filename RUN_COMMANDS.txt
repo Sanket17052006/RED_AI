@@ -1,0 +1,60 @@
+========================================
+SIMPLE COMMANDS TO RUN BACKEND
+========================================
+
+These commands use Python 3.12 or 3.13 specifically.
+
+FIRST TIME SETUP (Run these once):
+-----------------------------------
+
+1. Open PowerShell or Command Prompt
+
+2. Navigate to backend:
+   cd "C:\Users\Prateek PC\Desktop\red\backend"
+
+3. Create virtual environment with Python 3.12:
+   py -3.12 -m venv venv
+   
+   (If that fails, try Python 3.13:)
+   py -3.13 -m venv venv
+
+4. Activate virtual environment:
+   venv\Scripts\Activate.ps1
+   (For Command Prompt: venv\Scripts\activate.bat)
+
+5. Install dependencies:
+   pip install -r requirements.txt
+
+6. Create .env file:
+   echo "OPENAI_API_KEY=your_key_here" > .env
+   (Replace your_key_here with your actual API key)
+
+7. Run the server:
+   python run.py
+
+
+EVERY TIME YOU OPEN TERMINAL (After first setup):
+-------------------------------------------------
+
+1. Navigate to backend:
+   cd "C:\Users\Prateek PC\Desktop\red\backend"
+
+2. Activate virtual environment:
+   venv\Scripts\Activate.ps1
+
+3. Run the server:
+   python run.py
+
+
+QUICK ONE-LINER (After first setup):
+------------------------------------
+cd "C:\Users\Prateek PC\Desktop\red\backend" && venv\Scripts\Activate.ps1 && python run.py
+
+(For Command Prompt, use & instead of &&)
+
+
+OR JUST USE THE SCRIPT:
+-----------------------
+Double-click: start_backend.bat
+Or run: .\start_backend.bat
+
